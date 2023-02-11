@@ -54,6 +54,7 @@ const useStyles = createUseStyles(
         },
         number: {
             display: 'flex',
+            color: '#00acc1',
             gap: '10px',
             alignItems: 'center',
             '& span': {

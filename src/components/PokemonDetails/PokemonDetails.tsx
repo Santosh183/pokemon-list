@@ -139,6 +139,7 @@ const useStyles = createUseStyles(
             gap: '10px'
         },
         label: {
+            color: '#00acc1',
             width: '40%'
         },
         value: {
