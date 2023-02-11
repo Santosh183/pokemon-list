@@ -73,7 +73,8 @@ const useStyles = createUseStyles(
     },
     '@media only screen and (max-width: 768px)': {
       list: {
-        padding: '10px'
+        padding: '10px',
+        gap: '10px',
       },
       listItem: {
         width: '100%',
