@@ -1,6 +1,6 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route, HashRouter } from 'react-router-dom';
 import { LayoutProvider } from '../contexts';
 import { Nav } from '../components';
 import { ApolloProvider } from '@apollo/client';
@@ -14,7 +14,7 @@ function App() {
     <ApolloProvider client={client}>
       <LayoutProvider>
         <div className={classes.root}>
-          <BrowserRouter>
+          <HashRouter>
             <Nav />
             <div className={classes.content}>
               <div className={classes.scrollableArea}>
@@ -25,7 +25,7 @@ function App() {
                 </Routes>
               </div>
             </div>
-          </BrowserRouter>
+          </HashRouter>
         </div>
       </LayoutProvider>
     </ApolloProvider>
