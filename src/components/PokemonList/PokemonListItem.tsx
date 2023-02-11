@@ -63,6 +63,22 @@ const useStyles = createUseStyles(
         },
         types: {
             extend: 'number'
+        },
+        '@media only screen and (max-width: 768px)': {
+            avatar: {
+                '& img': {
+                    width: '50px',
+                    height: '50px',
+                    borderRadius: '50%'
+                }
+            },
+            info: {
+                fontSize: '12px'
+            },
+            name: {
+                fontSize: '15px',
+                paddingBottom: '5px'
+            },
         }
     },
     { name: 'PokemonListItem' }

@@ -70,6 +70,15 @@ const useStyles = createUseStyles(
         filter: 'brightness(120%)',
         cursor: 'pointer'
       }
+    },
+    '@media only screen and (max-width: 768px)': {
+      list: {
+        padding: '10px'
+      },
+      listItem: {
+        width: '100%',
+        padding: '5px',
+      }
     }
   },
   { name: 'PokemonList' }

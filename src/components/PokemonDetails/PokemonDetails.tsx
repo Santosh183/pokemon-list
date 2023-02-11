@@ -88,7 +88,8 @@ const useStyles = createUseStyles(
             background: 'rgba(0,0,0,0.5)',
             top: '0',
             left: '0',
-            overflow: 'auto'
+            overflow: 'auto',
+            zIndex: '101'
         },
         modalBody: {
             position: 'absolute',
@@ -143,6 +144,47 @@ const useStyles = createUseStyles(
         value: {
             width: '60%',
             color: 'rgba(255,255,255,.68)'
+        },
+        '@media only screen and (max-width: 768px)': {
+            modalBody: {
+                width: '80vw',
+                zIndex: '101',
+                padding: '20px',
+                top: '35%',
+                height: '60%',
+                '& span.material-icons': {
+                    fontSize: '18px',
+                    top: '0',
+                    right: '0'
+                }
+            },
+            details: {
+                boxShadow: '0px 0px 1px 1px rgb(255 255 255 / 10%)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '10px',
+                height: '100%'
+            },
+            avatar: {
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                '& img': {
+                    width: '60%',
+                }
+            },
+            info: {
+                gap: '5px',
+                padding: '10px',
+                '& h2': {
+                    fontSize: '18px',
+                },
+                fontSize: '14px'
+            },
+            divider: {
+                width: '100%',
+                height: '0px'
+            },
         }
     },
     { name: 'PokemonDetails' }

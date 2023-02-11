@@ -46,6 +46,24 @@ const useStyles = createUseStyles(
                 width: 'calc( 25% - 20px )',
             }
         },
+        '@media only screen and (max-width: 768px)': {
+            searchContainer: {
+                padding: '10px',
+                gap: '10px',
+                '& span': {
+                    width: '15px',
+                    height: '15px'
+                },
+                '& input': {
+                    padding: '5px',
+                    background: 'inherit',
+                    border: 'none',
+                    boxShadow: '0px 0px 1px 1px rgb(255 255 255 / 10%)',
+                    height: '100%',
+                    width: 'calc( 90% - 20px )',
+                }
+            },
+        }
 
     },
     { name: 'Search' }
