@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { createUseStyles } from 'react-jss';
+import { createUseStyles } from 'react-jss'
+import { useSearchParams } from 'react-router-dom';
 import { useGetPokemons } from '../../hooks/useGetPokemons';
 import { Pokemon } from '../../models/pokemonModels';
 import { PokemonDetails } from '../PokemonDetails';
@@ -11,7 +12,7 @@ export const PokemonList = () => {
   const { pokemons, loading } = useGetPokemons();
   const defaultState: Pokemon[] = pokemons;
   const [filteredPokemons, setFilteredPokemons] = useState(defaultState)
-  const [currentPokemon, setCurrentPokemon] = useState({ id: '', name: '' });
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const search = (searchString: string) => {
     const filteredData = pokemons.filter(pkmn => pkmn.name.toLowerCase().includes(searchString.trim().toLowerCase()))
@@ -30,12 +31,12 @@ export const PokemonList = () => {
       <div className={`${classes.root} ${classes.list}`}>
         {loading && <div>Loading...</div>}
         {filteredPokemons.map((pkmn) => (
-          <div key={pkmn.id} onClick={() => setCurrentPokemon({ id: pkmn.id, name: pkmn.name })} className={classes.listItem}>
+          <div key={pkmn.id} onClick={() => setSearchParams({ id: pkmn.id, name: pkmn.name })} className={classes.listItem}>
             <PokemonListItem pkmn={pkmn} />
           </div>
         ))}
       </div>
-      {currentPokemon.id && currentPokemon.name && <PokemonDetails currentPokemon={currentPokemon} dismiss={setCurrentPokemon} />}
+      {searchParams.get('id') && searchParams.get('name') && <PokemonDetails />}
     </>
   );
 };

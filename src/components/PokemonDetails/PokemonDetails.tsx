@@ -1,28 +1,27 @@
+import { useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
+import { useSearchParams } from 'react-router-dom';
 import { useGetPokemonDetails } from '../../hooks/useGetPokemonDetails';
 
-interface PokemonDetailsProps {
-    currentPokemon: {
-        id: string;
-        name: string;
-    };
-    dismiss: Function;
-}
 
-export const PokemonDetails: React.FC<PokemonDetailsProps> = ({ currentPokemon, dismiss }) => {
+
+export const PokemonDetails = () => {
     const classes = useStyles();
-    const { pokemonDetails, loading } = useGetPokemonDetails(currentPokemon.id, currentPokemon.name);
-
+    const [searchParams, setSearchParams] = useSearchParams();
+    const id = searchParams.get('id') || '';
+    const name = searchParams.get('name') || '';
+    const { pokemonDetails, loading } = useGetPokemonDetails(id, name);
 
     return (
         <>
-            <div onClick={() => dismiss({ id: '', name: '' })} className={classes.modalContainer}>
+            <div onClick={() => setSearchParams({})} className={classes.modalContainer}>
                 <div onClick={(e) => e.stopPropagation()} className={classes.modalBody}>
-                    <span onClick={() => dismiss({ id: '', name: '' })} className="material-icons">close</span>
+                    <span onClick={() => setSearchParams({})} className="material-icons">close</span>
                     {loading && <div>Loading...</div>}
+                    {!loading && !pokemonDetails.id && <h3> Details Not Found!</h3>}
                     <>
                         {
-                            !loading &&
+                            !loading && pokemonDetails.id &&
                             <div className={classes.details}>
                                 <div className={classes.avatar}>
                                     <img src={pokemonDetails.image} alt={pokemonDetails.name} />
