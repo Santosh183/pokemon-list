@@ -10,7 +10,21 @@ export const PokemonList = () => {
     <div className={classes.root}>
       {loading && <div>Loading...</div>}
       {pokemons.map((pkmn) => (
-        <div key={pkmn.id}>{pkmn.name}</div>
+        <div key={pkmn.id} className={classes.listItem}>
+          <div className={classes.avatar}>
+          </div>
+          <div className={classes.info}>
+            <div className={classes.name}>{pkmn.name}</div>
+            <div className={classes.number}>
+              <span className={classes.label}>Number: </span>
+              <span></span>
+            </div>
+            <div className={classes.types}>
+              <span className={classes.label}>Types: </span>
+              <span></span>
+            </div>
+          </div>
+        </div>
       ))}
     </div>
   );
@@ -24,6 +38,30 @@ const useStyles = createUseStyles(
       padding: '32px',
       boxSizing: 'border-box',
     },
+    list: {
+
+    },
+    listItem: {
+
+    },
+    avatar: {
+
+    },
+    info: {
+
+    },
+    name: {
+
+    },
+    label: {
+
+    },
+    number: {
+
+    },
+    types: {
+
+    }
   },
   { name: 'PokemonList' }
 );
