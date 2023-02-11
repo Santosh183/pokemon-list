@@ -6,6 +6,7 @@ import { Nav } from '../components';
 import { ApolloProvider } from '@apollo/client';
 import { client } from './client';
 import { ListPage, Home } from '../screens';
+import { PokemonDetails } from '../components/PokemonDetails';
 
 function App() {
   const classes = useStyles();
@@ -20,6 +21,7 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/pokemon" element={<ListPage />} />
+                  <Route path="/pokemon/details/:id" element={<PokemonDetails />} />
                 </Routes>
               </div>
             </div>
