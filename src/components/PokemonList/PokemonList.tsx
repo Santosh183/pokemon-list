@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss'
-import { useSearchParams } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { useGetPokemons } from '../../hooks/useGetPokemons';
 import { Pokemon } from '../../models/pokemonModels';
-import { PokemonDetails } from '../PokemonDetails';
+import { Loader } from '../generic/Loader';
 import { PokemonListItem } from './PokemonListItem';
 import { Search } from './Search';
 
@@ -12,7 +12,7 @@ export const PokemonList = () => {
   const { pokemons, loading } = useGetPokemons();
   const defaultState: Pokemon[] = pokemons;
   const [filteredPokemons, setFilteredPokemons] = useState(defaultState)
-  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const search = (searchString: string) => {
     const filteredData = pokemons.filter(pkmn => pkmn.name.toLowerCase().includes(searchString.trim().toLowerCase()))
@@ -29,14 +29,14 @@ export const PokemonList = () => {
     <>
       <Search handleSearch={search} />
       <div className={`${classes.root} ${classes.list}`}>
-        {loading && <div>Loading...</div>}
+        {loading && <Loader />}
         {filteredPokemons.map((pkmn) => (
-          <div key={pkmn.id} onClick={() => setSearchParams({ id: pkmn.id, name: pkmn.name })} className={classes.listItem}>
+          <div key={pkmn.id} onClick={() => navigate(`${pkmn.id}`, { state: { id: pkmn.id, name: pkmn.name } })} className={classes.listItem}>
             <PokemonListItem pkmn={pkmn} />
           </div>
         ))}
       </div>
-      {searchParams.get('id') && searchParams.get('name') && <PokemonDetails />}
+      <Outlet />
     </>
   );
 };

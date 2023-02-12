@@ -1,23 +1,25 @@
 import { useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useGetPokemonDetails } from '../../hooks/useGetPokemonDetails';
+import { Loader } from '../generic/Loader';
 
 
 
 export const PokemonDetails = () => {
     const classes = useStyles();
-    const [searchParams, setSearchParams] = useSearchParams();
-    const id = searchParams.get('id') || '';
-    const name = searchParams.get('name') || '';
+    const location = useLocation();
+    const navigate = useNavigate();
+    const id = location.state.id;
+    const name = location.state.name;
     const { pokemonDetails, loading } = useGetPokemonDetails(id, name);
 
     return (
         <>
-            <div onClick={() => setSearchParams({})} className={classes.modalContainer}>
+            <div onClick={() => navigate(-1)} className={classes.modalContainer}>
                 <div onClick={(e) => e.stopPropagation()} className={classes.modalBody}>
-                    <span onClick={() => setSearchParams({})} className="material-icons">close</span>
-                    {loading && <div>Loading...</div>}
+                    <span onClick={() => navigate(-1)} className="material-icons">close</span>
+                    {loading && <Loader />}
                     {!loading && !pokemonDetails.id && <h3> Details Not Found!</h3>}
                     <>
                         {
