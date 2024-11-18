@@ -16,10 +16,10 @@ export const Nav = () => {
             <img src="/pokeball-white.png" className={classes.img} />
             <h3>Pokémon</h3>
           </div>
-          <NavOption to="/" icon="home" name="Home">
+          <NavOption to="/pokemon-list" icon="home" name="Home">
             Home
           </NavOption>
-          <NavOption to="/pokemon" icon="list" name="List">
+          <NavOption to="/pokemon-list/pokemon" icon="list" name="List">
             List
           </NavOption>
         </div>

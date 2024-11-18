@@ -1,5 +1,5 @@
 import { createUseStyles } from 'react-jss';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { LayoutProvider } from '../contexts';
 import { Nav } from '../components';
 import { ApolloProvider } from '@apollo/client';
@@ -18,9 +18,10 @@ function App() {
             <div className={classes.content}>
               <div className={classes.scrollableArea}>
                 <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/pokemon" element={<ListPage />} >
-                    <Route path=":id" element={<PokemonDetails />} />
+                  <Route path="/" element={<Navigate to="/pokemon-list" />} />
+                  <Route path="/pokemon-list" element={<Home />} />
+                  <Route path="/pokemon-list/pokemon" element={<ListPage />} >
+                    <Route path="/pokemon-list/pokemon/:id" element={<PokemonDetails />} />
                   </Route>
                 </Routes>
               </div>
