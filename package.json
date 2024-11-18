@@ -25,7 +25,9 @@
     "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": {
     "production": [
@@ -41,6 +43,7 @@
   },
   "devDependencies": {
     "@types/jest": "^26.0.15",
+    "gh-pages": "^6.2.0",
     "react-scripts": "4.0.3"
   }
 }
